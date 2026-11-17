@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Контрольна робота: Безпечний інтернет та моя школа</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f7fb;--card:#fff;--tx:#1d2733;--mut:#5b6b7c;--ac:#2563eb;--ok:#15803d;--okb:#dcfce7;--bad:#b91c1c;--badb:#fee2e2;--bd:#d5dde8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10161f;--card:#192230;--tx:#e8eef6;--mut:#9fb0c3;--ac:#6ea0ff;--ok:#4ade80;--okb:#14352396;--bad:#f87171;--badb:#4a1d1d;--bd:#2c3a4d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10161f;--card:#192230;--tx:#e8eef6;--mut:#9fb0c3;--ac:#6ea0ff;--ok:#4ade80;--okb:#14352396;--bad:#f87171;--badb:#4a1d1d;--bd:#2c3a4d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.45rem;margin:.2em 0}h2{font-size:1.2rem;margin:0 0 .6em}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:14px 0}
+.mut{color:var(--mut);font-size:.92rem}
+.badge{display:inline-block;background:var(--ac);color:#fff;border-radius:99px;padding:2px 10px;font-size:.82rem;font-weight:600}
+input[type=text],textarea{width:100%;padding:9px 11px;border:1px solid var(--bd);border-radius:9px;background:var(--bg);color:var(--tx);font:inherit}
+textarea{min-height:80px;resize:vertical}
+label.f{display:block;margin:10px 0 4px;font-weight:600}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:180px}
+.q{padding:12px 0;border-top:1px solid var(--bd)}.q:first-of-type{border-top:0}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ac)}
+.opt.ok{background:var(--okb);border-color:var(--ok)}.opt.bad{background:var(--badb);border-color:var(--bad)}
+.fb{font-size:.92rem;margin-top:6px;color:var(--mut)}
+.crit{border:1px solid var(--bd);border-radius:12px;padding:12px;margin:10px 0}
+.crit label{display:flex;gap:8px;align-items:flex-start;margin:4px 0;cursor:pointer}
+.crit input{margin-top:5px;width:18px;height:18px;flex:none}
+.tch{background:var(--okb);border-radius:8px;padding:6px 10px;margin-top:8px;display:none}
+body.teacher .tch{display:block}
+button.b{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;margin:4px 6px 4px 0}
+button.b.s{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.bar{height:10px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac);width:0;transition:width .3s}
+.big{font-size:2.6rem;font-weight:800;color:var(--ac);line-height:1}
+table{width:100%;border-collapse:collapse;font-size:.95rem}td,th{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:left}
+@media print{.noprint{display:none!important}body{background:#fff;color:#000}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+<div class="card">
+  <span class="badge">6 клас · Інформатика · 12 балів</span>
+  <h1>Комплексна практична робота<br>«Безпечний інтернет та моя школа»</h1>
+  <p class="mut">Тема: створення та наповнення тематичного блогу. Робота складається з двох частин: <b>Частина 1</b> — тест (6 балів), <b>Частина 2</b> — практичне створення блогу (6 балів). Орієнтовний час: 40 хвилин.</p>
+  <div class="row">
+    <div><label class="f" for="nm">Прізвище та ім’я</label><input type="text" id="nm" placeholder="Іваненко Олена"></div>
+    <div><label class="f" for="cl">Клас</label><input type="text" id="cl" placeholder="6-А"></div>
+  </div>
+  <div class="bar" style="margin-top:14px"><i id="prog"></i></div>
+  <p class="mut" id="progt" style="margin:4px 0 0">Виконано: 0 з 12 завдань</p>
+</div>
+
+<div class="card">
+  <h2>Частина 1. Тест <span class="mut">(1 бал за кожну правильну відповідь)</span></h2>
+  <div id="quiz"></div>
+  <p><b>Бали за тест: <span id="s1">0</span> / 6</b></p>
+</div>
+
+<div class="card">
+  <h2>Частина 2. Практична робота: створюю блог <span class="mut">(6 балів)</span></h2>
+  <p class="mut">Створи блог на безкоштовній платформі, яку вказав учитель (наприклад, Blogger або Google Sites). Спочатку заповни чернетки нижче, потім перенеси їх у блог і познач виконані критерії. Не вказуй у блозі домашню адресу, телефон та інші особисті дані!</p>
+  <label class="f" for="t1">Завдання А. Назва блогу та девіз (без справжнього прізвища)</label>
+  <input type="text" id="t1" placeholder="Напр.: «Школярик онлайн — безпечно та цікаво»">
+  <label class="f" for="t2">Завдання Б. Допис 1 — «5 правил безпечного інтернету» (чернетка)</label>
+  <textarea id="t2" placeholder="1. Не повідомляю незнайомцям особисті дані…"></textarea>
+  <label class="f" for="t3">Завдання В. Допис 2 — «Моя школа»: 3–4 речення про школу (без імен однокласників і фото облич без згоди)</label>
+  <textarea id="t3"></textarea>
+  <label class="f" for="t4">Завдання Г. Допис 3 — корисне посилання та список: назва ресурсу та чому він корисний</label>
+  <textarea id="t4" placeholder="Напр.: сайт «Безпечний інтернет» — тут є поради для дітей…"></textarea>
+
+  <h2 style="margin-top:20px">Критерії оцінювання <span class="mut">(по 1 балу)</span></h2>
+  <div id="crits"></div>
+  <p><b>Бали за практичну частину: <span id="s2">0</span> / 6</b>
+  <span class="mut" id="s2note"></span></p>
+</div>
+
+<div class="card" id="res">
+  <h2>Підсумок</h2>
+  <table>
+    <tr><td>Частина 1 (тест)</td><td id="r1">0 / 6</td></tr>
+    <tr><td>Частина 2 (практична)</td><td id="r2">0 / 6</td></tr>
+  </table>
+  <p style="margin:14px 0 0"><span class="big" id="tot">0</span> <span class="mut">з 12 балів</span></p>
+  <p id="lvl" style="font-weight:600"></p>
+  <div class="noprint">
+    <button class="b" id="calc">Показати результат</button>
+    <button class="b s" onclick="window.print()">Друк / PDF</button>
+    <button class="b s" id="tbtn">Режим вчителя</button>
+    <button class="b s" id="reset">Почати спочатку</button>
+  </div>
+  <p class="mut noprint">Режим вчителя відкриває поля, у яких оцінку за кожен критерій практичної частини ставить учитель. Тоді підсумок рахується за оцінками вчителя.</p>
+</div>
+</main>
+<script>
+var Q=[
+{q:"Що НЕ можна публікувати у шкільному блозі?",o:["Свій псевдонім","Домашню адресу та номер телефону","Власний малюнок","Поради щодо безпеки"],a:1,e:"Особисті дані (адреса, телефон, паролі) публікувати небезпечно — ними можуть скористатися шахраї."},
+{q:"Який пароль найнадійніший?",o:["12345678","qwerty","Mykola2012","T7!kRv9#pLm2"],a:3,e:"Надійний пароль довгий і поєднує великі та малі літери, цифри й символи, не містить імені чи дати народження."},
+{q:"Незнайома людина в чаті просить надіслати твоє фото та адресу школи. Що робити?",o:["Надіслати, якщо вона ввічлива","Не відповідати, заблокувати та розповісти дорослим","Надіслати лише адресу","Попросити в неї фото натомість"],a:1,e:"Незнайомцям нічого про себе не надсилають. Про такі випадки обов’язково повідомляють дорослим."},
+{q:"Що таке блог?",o:["Антивірусна програма","Сайт із записами (дописами), які розміщені від нових до старих","Мережева гра","Програма для малювання"],a:1,e:"Блог — це вебсайт-щоденник із дописами, часто з коментарями читачів."},
+{q:"Що таке фішинг?",o:["Вид онлайн-гри","Шахрайські листи чи сайти для викрадення даних","Спосіб прискорити інтернет","Програма для перегляду фото"],a:1,e:"Фішинг — підробні повідомлення та сайти, що виманюють паролі й дані. Не переходь за підозрілими посиланнями."},
+{q:"Ти хочеш розмістити в блозі фото однокласників зі шкільного свята. Як правильно?",o:["Розмістити всі фото без питань","Спитати дозволу в однокласників (та за потреби в дорослих)","Розмістити, якщо фото гарні","Розмістити з їхніми прізвищами"],a:1,e:"Фото людей публікують лише за їхньою згодою. Це повага до приватності."}
+];
+var C=[
+"Блог створено, назва відповідає темі (безпечний інтернет і школа), є девіз або короткий опис.",
+"Профіль і опис блогу не містять особистих даних (використано псевдонім).",
+"Допис 1 «Правила безпечного інтернету»: щонайменше 5 правил, є заголовок.",
+"Допис 2 «Моя школа»: текст і зображення; без облич і прізвищ без згоди, вказано джерело зображення.",
+"Допис 3: є корисне гіперпосилання та форматований список (заголовки, жирний шрифт чи нумерація).",
+"Блог оформлено (тема, кольори), увімкнено модерацію коментарів, блог переглянуто з погляду читача."
+];
+var ans={},self=[],tch=[],teacher=false,shown=false;
+var quiz=document.getElementById("quiz"),crits=document.getElementById("crits");
+Q.forEach(function(x,i){
+  var d=document.createElement("div");d.className="q";
+  d.innerHTML="<b>"+(i+1)+". "+x.q+"</b>";
+  x.o.forEach(function(t,j){
+    var b=document.createElement("button");b.className="opt";b.textContent=t;
+    b.onclick=function(){pick(i,j,d)};d.appendChild(b);
+  });
+  var f=document.createElement("div");f.className="fb";d.appendChild(f);
+  quiz.appendChild(d);
+});
+function pick(i,j,d){
+  if(ans[i]!==undefined)return;
+  ans[i]=j;var bs=d.querySelectorAll(".opt");
+  bs.forEach(function(b,k){b.disabled=true;if(k===Q[i].a)b.classList.add("ok");else if(k===j)b.classList.add("bad")});
+  d.querySelector(".fb").textContent=(j===Q[i].a?"✅ Правильно. ":"❌ Неправильно. ")+Q[i].e;
+  upd();
+}
+C.forEach(function(t,i){
+  var d=document.createElement("div");d.className="crit";
+  d.innerHTML='<label><input type="checkbox" data-s="'+i+'"><span><b>Критерій '+(i+1)+'.</b> '+t+'</span></label>'+
+  '<div class="tch"><label><input type="checkbox" data-t="'+i+'"><span>Вчитель: критерій виконано (+1 бал)</span></label></div>';
+  crits.appendChild(d);
+});
+crits.addEventListener("change",function(e){
+  var s=e.target.getAttribute("data-s"),t=e.target.getAttribute("data-t");
+  if(s!==null)self[+s]=e.target.checked;
+  if(t!==null)tch[+t]=e.target.checked;
+  upd();
+});
+function n(a){var c=0;for(var i=0;i<6;i++)if(a[i])c++;return c}
+function s1(){var c=0;for(var i in ans)if(ans[i]===Q[i].a)c++;return c}
+function upd(){
+  var a=s1(),b=teacher?n(tch):n(self);
+  document.getElementById("s1").textContent=a;
+  document.getElementById("s2").textContent=b;
+  document.getElementById("s2note").textContent=teacher?" (за оцінкою вчителя)":" (самооцінка, остаточно оцінює вчитель)";
+  var done=Object.keys(ans).length+n(self);
+  document.getElementById("prog").style.width=(done/12*100)+"%";
+  document.getElementById("progt").textContent="Виконано: "+done+" з 12 завдань";
+  if(shown)show();
+}
+function show(){
+  shown=true;
+  var a=s1(),b=teacher?n(tch):n(self),t=a+b;
+  document.getElementById("r1").textContent=a+" / 6";
+  document.getElementById("r2").textContent=b+" / 6"+(teacher?"":" (самооцінка)");
+  document.getElementById("tot").textContent=t;
+  var l=t>=10?"Високий рівень":t>=7?"Достатній рівень":t>=4?"Середній рівень":"Початковий рівень";
+  var nm=document.getElementById("nm").value,cl=document.getElementById("cl").value;
+  document.getElementById("lvl").textContent=(nm?nm+(cl?", "+cl:"")+": ":"")+l+(teacher?"":" · попередній результат до перевірки вчителем");
+}
+document.getElementById("calc").onclick=show;
+document.getElementById("tbtn").onclick=function(){
+  teacher=!teacher;document.body.classList.toggle("teacher",teacher);
+  this.textContent=teacher?"Вимкнути режим вчителя":"Режим вчителя";upd();
+};
+document.getElementById("reset").onclick=function(){
+  if(confirm("Почати спочатку? Усі відповіді буде очищено."))location.reload();
+};
+upd();
+</script>
+</body>
+</html>
